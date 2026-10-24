@@ -208,6 +208,53 @@ FlowGit/
 
 ---
 
+## Directory Guide: Mandatory vs. Disposable Folders
+
+When working with or cleaning the repository, refer to this guide to know what must be preserved and what can be safely removed.
+
+### Mandatory Directories & Files (Must Be Present)
+
+These folders and files contain the complete source code, test suites, and configurations. They **must never be deleted** or the application cannot be developed or built:
+
+| Path | Required | Purpose |
+|---|---|---|
+| `electron/` | **Yes** | Electron Main process: safe Git execution engine (`electron/git/`), IPC route handlers (`electron/ipc/`), settings, persistence, and logger. |
+| `src/` | **Yes** | Frontend React application: all views (`Changes`, `History`, `Graph`, `Branches`, `Stash`, `Remotes`), UI components, Axiom CSS tokens, and Zustand stores. |
+| `shared/` | **Yes** | Shared TypeScript contracts, IPC channel constants, and type models shared between the main and renderer processes. |
+| `tests/` | **Yes** | Automated integration tests (`tests/git/git.test.ts`) that verify all Git engine operations against isolated temporary repositories. |
+| `package.json` & `package-lock.json` | **Yes** | Defines project dependencies, lifecycle scripts, and packaging metadata. |
+| `electron.vite.config.ts` | **Yes** | Build configuration for `electron-vite` covering main, preload, and renderer bundling. |
+| `tsconfig.json` & `tsconfig.node.json` | **Yes** | Strict TypeScript compiler options for the workspace. |
+| `.gitignore` | **Yes** | Prevents temporary build files and large binary distributions from entering Git. |
+| `DESIGN.md` | **Yes** | Authoritative Axiom design specification (colors, typography, geometry). |
+| `PROJECT_STATE.md` | **Yes** | Authoritative development handoff and operational status document. |
+
+---
+
+### Disposable / Temporary Directories (Safe to Delete)
+
+These directories contain generated artifacts, third-party packages, or local caches. They are excluded by `.gitignore` and **can be safely deleted at any time** to free up disk space:
+
+| Path | Safe to Delete? | How to Regenerate / Recreate |
+|---|---|---|
+| `node_modules/` | **Yes** | Run `npm install`. Deleting this folder removes downloaded npm packages (~500 MB) when doing a clean reinstall. |
+| `out/` | **Yes** | Run `npm run build`. Contains intermediate compiled code (`out/main`, `out/preload`, `out/renderer`). |
+| `release/` | **Yes** | Run `npm run dist:dir` or `npm run dist`. Contains the packaged Windows binaries (`FlowGit.exe`, installers) taking up ~300+ MB. |
+| `dist/` or `dist-electron/` | **Yes** | Automatically re-created if used by alternative tool configurations. |
+| `.vite/` | **Yes** | Automatically regenerated on the next `npm run dev` or `npm run build`. |
+| `resources/` | **Optional** | Reserved for optional assets such as custom `icon.ico` and font files. If removed, FlowGit falls back to default system assets without breaking. |
+| `%APPDATA%\FlowGit\` | **Yes (Runtime)** | Stored in Windows user profile (`C:\Users\<User>\AppData\Roaming\FlowGit`). Deleting `flowgit-data.json` or `settings.json` resets the recent repositories list and user preferences without affecting your source files. |
+
+#### One-Liner to Clean All Generated Files (Windows PowerShell)
+If you want to perform a completely clean rebuild from scratch:
+```powershell
+Remove-Item -Recurse -Force node_modules, out, release -ErrorAction SilentlyContinue
+npm install
+npm run dist:dir
+```
+
+---
+
 ## Security Model
 
 FlowGit adheres strictly to Electron security best practices:
