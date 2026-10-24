@@ -1,0 +1,165 @@
+/* ============================================================
+   FlowGit Design Tokens — derived from DESIGN.md (Axiom system)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+@theme {
+  /* ── Colors ── */
+  --color-void: #000000;
+  --color-carbon: #111111;
+  --color-graphite: #191919;
+  --color-iron: #202020;
+  --color-slate: #3a3a3a;
+  --color-pewter: #505050;
+  --color-steel: #606060;
+  --color-ash: #7e7e7e;
+  --color-fog: #b4b4b4;
+  --color-chalk: #d9d9d9;
+  --color-paper: #eeeeee;
+  --color-ember: #da5c2c;
+
+  /* Semantic diff colors (muted, design-system-safe) */
+  --color-added: #1a3a1a;
+  --color-added-text: #4caf50;
+  --color-removed: #3a1a1a;
+  --color-removed-text: #ef5350;
+
+  /* ── Typography ── */
+  --font-mono: 'BerkeleyMono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* ── Type Scale ── */
+  --text-caption: 12px;
+  --text-body: 14px;
+  --text-sm: 13px;
+  --text-heading-sm: 18px;
+  --text-heading: 20px;
+  --text-heading-lg: 24px;
+  --text-display: 32px;
+
+  /* ── Font Weights ── */
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  /* ── Spacing (8px base) ── */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+  --spacing-20: 80px;
+  --spacing-24: 96px;
+
+  /* ── Border Radius ── */
+  --radius-none: 0px;
+  --radius-sm: 2px;     /* cards, buttons, inputs, panels */
+  --radius-full: 9999px; /* icon badges, pill tags */
+
+  /* ── Shadows ── */
+  --shadow-subtle: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+
+  /* ── Layout ── */
+  --layout-sidebar-width: 240px;
+  --layout-panel-min: 280px;
+  --layout-titlebar-height: 40px;
+}
+
+/* ── CSS Custom Properties (for non-Tailwind usage) ── */
+:root {
+  --color-void: #000000;
+  --color-carbon: #111111;
+  --color-graphite: #191919;
+  --color-iron: #202020;
+  --color-slate: #3a3a3a;
+  --color-pewter: #505050;
+  --color-steel: #606060;
+  --color-ash: #7e7e7e;
+  --color-fog: #b4b4b4;
+  --color-chalk: #d9d9d9;
+  --color-paper: #eeeeee;
+  --color-ember: #da5c2c;
+
+  --font-mono: 'BerkeleyMono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --radius-sm: 2px;
+  --radius-full: 9999px;
+
+  --layout-sidebar-width: 240px;
+  --layout-titlebar-height: 40px;
+}
+
+/* ── Global Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  background-color: var(--color-void);
+  color: var(--color-paper);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.71;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+}
+
+/* Allow text selection in content areas */
+.selectable {
+  user-select: text;
+}
+
+/* ── Scrollbar Styling ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-void);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-slate);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-pewter);
+}
+
+/* ── Focus Indicators ── */
+:focus-visible {
+  outline: 1px solid var(--color-ember);
+  outline-offset: 1px;
+}
+
+/* ── Utility Classes ── */
+.font-mono { font-family: var(--font-mono); }
+.font-sans { font-family: var(--font-sans); }
+.text-paper { color: var(--color-paper); }
+.text-fog { color: var(--color-fog); }
+.text-ash { color: var(--color-ash); }
+.text-steel { color: var(--color-steel); }
+.text-ember { color: var(--color-ember); }
+.bg-void { background-color: var(--color-void); }
+.bg-carbon { background-color: var(--color-carbon); }
+.bg-graphite { background-color: var(--color-graphite); }
+.bg-iron { background-color: var(--color-iron); }
+.border-iron { border-color: var(--color-iron); }
+.border-slate { border-color: var(--color-slate); }
