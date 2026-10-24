@@ -146,7 +146,14 @@ The compiled executable will be located at:
 release\win-unpacked\FlowGit.exe
 ```
 
-### 5. Generate Windows NSIS Installer & Portable Builds
+### 5. Compile a portable windows executable
+```cmd
+npx electron-builder --win portable
+```
+
+The icon you can change with Resource Hacker
+
+### 6. Generate Windows NSIS Installer & Portable Builds
 Builds the complete distribution installer (`FlowGit Setup.exe`) and portable executable:
 ```cmd
 npm run dist
