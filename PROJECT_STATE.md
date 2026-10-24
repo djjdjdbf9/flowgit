@@ -115,7 +115,17 @@
 
 ---
 
-## H. Instructions for the Next AI Agent
+## H. Important Decisions
+
+| Decision | Reason | Alternatives Rejected |
+|---|---|---|
+| Native JSON store (`JsonStore`) over `electron-store` | `electron-store` v10 is pure ESM causing `ERR_REQUIRE_ESM` in Electron CJS main bundle; native `fs` JSON store has 0 external dependencies and 100% synchronous stability | `electron-store` v10 (rejected: ESM runtime collision) |
+| Atomic JSON store over `better-sqlite3` | Eliminates requirement for Visual Studio C++ compilers and node-gyp native compilation on target user PCs | `better-sqlite3` (rejected: requires C++ build tools) |
+| electron-vite over vanilla Vite | Direct Electron HMR and optimized dual-bundle build pipeline | Custom webpack, Create React App |
+
+---
+
+## I. Instructions for the Next AI Agent
 
 1. **Read `PROJECT_STATE.md` completely before making changes.**
 2. **Read `DESIGN.md` before modifying any UI.** Adhere strictly to the Axiom design system.

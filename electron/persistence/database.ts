@@ -1,4 +1,4 @@
-import Store from 'electron-store'
+import { JsonStore } from './json-store'
 import { createLogger } from '../logger'
 import type { Repository } from '../../shared/types/git.types'
 
@@ -10,18 +10,14 @@ interface DatabaseSchema {
   graphLayout: Record<string, { x: number; y: number }>
 }
 
-let store: Store<DatabaseSchema> | null = null
+let store: JsonStore<DatabaseSchema> | null = null
 
-export function getDb(): Store<DatabaseSchema> {
+export function getDb(): JsonStore<DatabaseSchema> {
   if (!store) {
-    store = new Store<DatabaseSchema>({
-      name: 'flowgit-data',
-      defaults: {
-        repositories: [],
-        uiState: {},
-        graphLayout: {},
-      },
-      clearInvalidConfig: true,
+    store = new JsonStore<DatabaseSchema>('flowgit-data', {
+      repositories: [],
+      uiState: {},
+      graphLayout: {},
     })
   }
   return store
@@ -47,7 +43,7 @@ export function getRepository(id: string): Repository | null {
 
 export function upsertRepository(repo: Omit<Repository, 'remotes'>): void {
   const db = getDb()
-  const repos = db.get('repositories') ?? []
+  const repos = [...(db.get('repositories') ?? [])]
   const existingIndex = repos.findIndex(r => r.id === repo.id || r.path === repo.path)
 
   const fullRepo: Repository = {
@@ -78,7 +74,7 @@ export function removeRepository(id: string): void {
 
 export function pinRepository(id: string, pinned: boolean): void {
   const db = getDb()
-  const repos = db.get('repositories') ?? []
+  const repos = [...(db.get('repositories') ?? [])]
   const repo = repos.find(r => r.id === id)
   if (repo) {
     repo.isPinned = pinned
@@ -95,7 +91,7 @@ export function getUiState(key: string): string | null {
 
 export function setUiState(key: string, value: string): void {
   const db = getDb()
-  const state = db.get('uiState') ?? {}
+  const state = { ...(db.get('uiState') ?? {}) }
   state[key] = value
   db.set('uiState', state)
 }

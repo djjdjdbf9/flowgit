@@ -17,9 +17,7 @@
     "dist": "npm run build && electron-builder",
     "dist:dir": "npm run build && electron-builder --dir"
   },
-  "dependencies": {
-    "electron-store": "^10.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^3.0.0",
