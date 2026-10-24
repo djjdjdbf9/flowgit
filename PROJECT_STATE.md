@@ -100,8 +100,9 @@
 - [ ] Add GitHub / GitLab / Gitea remote REST/GraphQL provider API authentication and PR list browsing.
 
 ### P2 — Windows Packaging & Polish
-- [ ] Package Windows distribution installer using `electron-builder` (`npm run dist`).
-- [ ] Generate standard FlowGit `.ico` icon for Windows taskbar and installer.
+- [x] Package Windows distribution installer using `electron-builder` (`npm run dist:dir`).
+- [x] Comprehensive English `README.md` documentation covering overview, architecture, quick start, build commands.
+- [ ] Generate custom FlowGit `.ico` icon for Windows taskbar and installer.
 
 ---
 
