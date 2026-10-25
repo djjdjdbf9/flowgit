@@ -1,0 +1,21 @@
+{
+  "name": "flowgit-landing",
+  "version": "1.0.0",
+  "description": "Terminal-grade Axiom landing page for FlowGit desktop application",
+  "private": true,
+  "scripts": {
+    "start": "npx serve . -l 3000",
+    "serve": "npx serve . -l 3000",
+    "preview": "npx serve . -l 3000"
+  },
+  "keywords": [
+    "flowgit",
+    "git",
+    "axiom",
+    "landing-page",
+    "blueprint",
+    "terminal"
+  ],
+  "author": "FlowGit Team",
+  "license": "MIT"
+}

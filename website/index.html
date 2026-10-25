@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlowGit — Blueprint-Inspired Git Desktop Application for Windows</title>
+  <meta name="description" content="A high-performance, Blueprint-inspired Windows Git desktop client. Built with Electron 33, React 18, and the terminal-grade Axiom design system.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/x-icon" href="../src/icon.ico">
+</head>
+<body>
+
+  <!-- ── Top Announcement Strip ── -->
+  <div class="announcement-banner" id="announcementBanner">
+    <div class="announcement-content">
+      <div class="announcement-badge">
+        <span class="pulse-dot"></span>
+        <span>v1.0.0-rc.3 RELEASE</span>
+      </div>
+      <div class="announcement-text">
+        <span>Topological DAG Engine, Electron 33 &amp; SQLite WAL persistence are now live.</span>
+        <a href="#downloads" class="announcement-link">Get Portable &amp; Compiled Binaries on GitHub →</a>
+      </div>
+      <button class="announcement-close" id="closeAnnouncement" title="Dismiss announcement">×</button>
+    </div>
+  </div>
+
+  <!-- ── Navigation Bar ── -->
+  <header class="nav-bar">
+    <div class="container nav-container">
+      <div class="brand-cluster">
+        <a href="#" class="brand-logo">
+          <span class="brand-mark">▲</span>
+          <span>FlowGit</span>
+        </a>
+        <span class="brand-badge">WIN-X64</span>
+      </div>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#graph" class="nav-link"><span class="nav-index">01</span> GRAPH</a></li>
+          <li><a href="#staging" class="nav-link"><span class="nav-index">02</span> STAGING</a></li>
+          <li><a href="#diffs" class="nav-link"><span class="nav-index">03</span> DIFFS</a></li>
+          <li><a href="#features" class="nav-link"><span class="nav-index">04</span> FEATURES</a></li>
+          <li><a href="#architecture" class="nav-link"><span class="nav-index">05</span> ARCHITECTURE</a></li>
+          <li><a href="#downloads" class="nav-link"><span class="nav-index">06</span> DOWNLOAD</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#terminal" class="btn btn-ghost btn-sm">GUIDE →</a>
+        <a href="#downloads" class="btn btn-primary btn-sm">DOWNLOAD →</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Main Content ── -->
+  <main>
+    <!-- ── Hero Section ── -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-layout">
+        <div>
+          <!-- Terminal prompt -->
+          <div class="hero-prompt">
+            <span>~/flowgit/engine</span>
+            <span class="hero-prompt-dir">--mode=production --target=win64</span>
+            <span class="hero-prompt-cursor"></span>
+          </div>
+
+          <!-- Main Monospaced Headline -->
+          <div class="hero-headline">
+            <span class="tag-label">ENGINEERING-NATIVE GIT CLIENT</span>
+            <h1 class="heading-display">
+              TOPOLOGICAL GIT GRAPH.<br>
+              BLUEPRINT PRECISION.
+            </h1>
+          </div>
+
+          <!-- Subtitle -->
+          <p class="hero-description">
+            FlowGit replaces archaic commit ladders with an interactive, node-based DAG visual engine.
+            Spawns authentic Git binaries through safe argument arrays with zero shell string interpolation,
+            yielding instantaneous diffs, porcelain-v1 staging, and SQLite WAL caching for massive enterprise repositories.
+          </p>
+
+          <!-- Action buttons -->
+          <div class="hero-cta-group">
+            <a href="#downloads" class="btn btn-primary btn-lg">
+              <span>View Releases on GitHub</span>
+              <span>→</span>
+            </a>
+            <a href="#terminal" class="btn btn-ghost btn-lg">
+              <span>Execution Guide</span>
+              <span>→</span>
+            </a>
+            <div class="hero-install-pill">
+              <span style="color:var(--color-ember); font-weight:700;">ARTIFACTS:</span>
+              <code style="color:var(--color-paper);">Portable .exe &bull; Compiled Binaries .zip</code>
+            </div>
+          </div>
+
+          <!-- Telemetry Stats -->
+          <div class="hero-telemetry-strip">
+            <div class="telemetry-item">
+              <span class="dot"></span>
+              <span>ZERO SHELL STRINGS</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="dot"></span>
+              <span>DIRECT ARGV SPAWN</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="dot"></span>
+              <span>ELECTRON 33 + REACT 18</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="dot"></span>
+              <span>SQLITE WAL CACHING</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="dot"></span>
+              <span>AXIOM DESIGN SYSTEM</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arrow Decoration Field Background (DESIGN.md) -->
+        <div class="arrow-field-background" aria-hidden="true">&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;
+  &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;
+    &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;
+      &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;
+        &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;
+          &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;
+            &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;
+              &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;
+                &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;
+                  &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;
+                    &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;
+                      &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;</div>
+      </div>
+
+      <!-- ── Interactive Product Showcase ── -->
+      <div class="container" style="position: relative; z-index: 5;">
+        <div class="showcase-wrapper" id="graph">
+          <!-- Window Chrome -->
+          <div class="app-chrome">
+            <div class="app-window-controls">
+              <span class="window-dot close"></span>
+              <span class="window-dot min"></span>
+              <span class="window-dot max"></span>
+            </div>
+            <div class="app-window-title">
+              <span style="color:var(--color-ember); font-weight:700;">▲</span>
+              <span>FlowGit — repo: flowgit.git [main*]</span>
+            </div>
+            <div class="app-window-status">
+              <span class="status-indicator-green"></span>
+              <span>GIT 2.44.0 (x64) • WAL OPEN</span>
+            </div>
+          </div>
+
+          <!-- Product Tabs -->
+          <div class="product-tab-bar">
+            <button class="product-tab active" data-tab="graph">
+              <span style="color:var(--color-ember);">[01]</span>
+              <span>BLUEPRINT DAG GRAPH</span>
+            </button>
+            <button class="product-tab" data-tab="staging" id="staging">
+              <span style="color:var(--color-steel);">[02]</span>
+              <span>PORCELAIN STAGING</span>
+            </button>
+            <button class="product-tab" data-tab="diff" id="diffs">
+              <span style="color:var(--color-steel);">[03]</span>
+              <span>ADVANCED DIFF VIEWER</span>
+            </button>
+            <button class="product-tab" data-tab="branches">
+              <span style="color:var(--color-steel);">[04]</span>
+              <span>BRANCH MATRIX &amp; STASH</span>
+            </button>
+          </div>
+
+          <!-- Commit Activity Histogram (DESIGN.md specification) -->
+          <div class="histogram-row">
+            <span class="histogram-label">EVENT FREQUENCY</span>
+            <div class="histogram-bars-container" id="histogramBars"></div>
+            <span style="font-size:10px; color:var(--color-steel);">LAST 30 DAYS</span>
+          </div>
+
+          <!-- Showcase Viewport -->
+          <div class="showcase-viewport">
+
+            <!-- TAB 1: BLUEPRINT DAG GRAPH -->
+            <div class="view-panel active" id="panel-graph">
+              <div class="blueprint-graph-container" id="graphCanvasContainer">
+                <!-- Toolbar Controls -->
+                <div class="graph-controls-toolbar">
+                  <input type="text" id="graphSearchInput" class="graph-search-input" placeholder="Search commits..." />
+                  <button class="graph-tool-btn" id="zoomInBtn" title="Zoom In">+</button>
+                  <button class="graph-tool-btn" id="zoomOutBtn" title="Zoom Out">−</button>
+                  <button class="graph-tool-btn" id="zoomFitBtn" title="Fit to View">FIT</button>
+                  <button class="graph-tool-btn" id="jumpHeadBtn" title="Jump to HEAD" style="color:var(--color-ember); font-weight:700;">HEAD</button>
+                </div>
+
+                <div class="graph-hint">
+                  <span>Pan: Drag canvas | Zoom: Wheel / +/- | Click node to inspect</span>
+                </div>
+
+                <!-- SVG DAG Surface -->
+                <svg id="graphSvg" class="graph-svg-root"></svg>
+
+                <!-- Minimap Radar -->
+                <div class="graph-minimap">
+                  <div style="font-size:9px; color:var(--color-steel); padding:2px 4px; background:#000;">RADAR</div>
+                  <div class="minimap-viewport-box" id="minimapBox"></div>
+                </div>
+
+                <!-- Commit Inspector Drawer -->
+                <div class="commit-inspector-drawer" id="commitInspector">
+                  <div class="inspector-header">
+                    <div>
+                      <span style="color:var(--color-ember); font-size:11px; font-weight:700;">COMMIT DETAILS</span>
+                      <div class="inspector-hash" id="inspHash">a94f1c0</div>
+                    </div>
+                    <button class="inspector-close-btn" id="closeInspectorBtn" title="Close drawer">×</button>
+                  </div>
+
+                  <div class="inspector-body">
+                    <div class="inspector-field">
+                      <div class="inspector-field-label">AUTHOR</div>
+                      <div class="inspector-field-val" id="inspAuthor">Alex Vance &lt;alex@flowgit.io&gt;</div>
+                    </div>
+                    <div class="inspector-field">
+                      <div class="inspector-field-label">DATE &amp; TIME</div>
+                      <div class="inspector-field-val" id="inspDate">2026-10-25 22:41:18</div>
+                    </div>
+                    <div class="inspector-field">
+                      <div class="inspector-field-label">MESSAGE</div>
+                      <div class="inspector-field-val" id="inspMessage" style="color:var(--color-paper); font-weight:500;">
+                        feat(graph): topological DAG bezier connector &amp; minimap sync
+                      </div>
+                    </div>
+
+                    <div class="inspector-field" style="margin-top:14px;">
+                      <div class="inspector-field-label">CHANGED FILES</div>
+                      <div id="inspFileList" style="border-top:1px solid var(--color-iron); padding-top:6px;"></div>
+                    </div>
+
+                    <div class="inspector-diff-preview">
+                      <div style="color:var(--color-steel); font-size:10px; margin-bottom:4px;">DIFF HUNK PREVIEW:</div>
+                      <pre id="inspDiffCode" style="color:var(--color-fog); line-height:1.4;"></pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- TAB 2: PORCELAIN STAGING -->
+            <div class="view-panel" id="panel-staging">
+              <div class="staging-view-grid">
+                <div class="staging-sidebar">
+                  <!-- Staged Files -->
+                  <div class="staging-section-header">
+                    <span>STAGED CHANGES <span id="stagedCount" style="color:var(--color-ember);">(2)</span></span>
+                    <button class="staging-action-btn" id="unstageAllBtn">Unstage All</button>
+                  </div>
+                  <div class="staging-file-list" id="stagedFilesContainer" style="max-height: 140px;"></div>
+
+                  <!-- Unstaged Files -->
+                  <div class="staging-section-header">
+                    <span>UNSTAGED / UNTRACKED <span id="unstagedCount" style="color:var(--color-steel);">(3)</span></span>
+                    <button class="staging-action-btn" id="stageAllBtn">Stage All</button>
+                  </div>
+                  <div class="staging-file-list" id="unstagedFilesContainer"></div>
+
+                  <!-- Commit Box -->
+                  <div class="commit-form-panel">
+                    <textarea id="commitInputMsg" class="commit-textarea" placeholder="Commit message (Ctrl+Enter to commit)...">feat(security): sanitize Git environment variables before spawn</textarea>
+                    <div class="commit-form-footer">
+                      <span class="char-counter" id="commitCharCounter">63 / 72 chars</span>
+                      <button class="btn btn-primary btn-sm" id="commitBtn">Commit →</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Staging Diff Pane -->
+                <div class="staging-diff-preview-pane">
+                  <div style="font-size:12px; color:var(--color-steel); margin-bottom:12px; display:flex; justify-content:space-between;">
+                    <span>DIFF: electron/git/executor.ts</span>
+                    <span style="color:var(--color-fog);">INDEX VS WORKTREE</span>
+                  </div>
+                  <pre style="line-height:1.6; color:var(--color-fog); font-size:12px;"><span style="color:var(--color-ember);">@@ -15,8 +15,10 @@ export function spawnGit(args: string[], cwd: string) {</span>
+   const gitBinary = getResolvedGitPath();
+<span style="color:var(--diff-del-text); background:var(--diff-del-bg); display:block;">-  // Dangerous: raw shell invocation with string interpolation</span>
+<span style="color:var(--diff-del-text); background:var(--diff-del-bg); display:block;">-  return child_process.exec(`"${gitBinary}" ${args.join(' ')}`);</span>
+<span style="color:var(--diff-add-text); background:var(--diff-add-bg); display:block;">+  // Safe: argv array spawning with shell disabled</span>
+<span style="color:var(--diff-add-text); background:var(--diff-add-bg); display:block;">+  const env = redactSensitiveTokens(process.env);</span>
+<span style="color:var(--diff-add-text); background:var(--diff-add-bg); display:block;">+  return child_process.spawn(gitBinary, args, { cwd, shell: false, env });</span>
+ }</pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- TAB 3: ADVANCED DIFF VIEWER -->
+            <div class="view-panel" id="panel-diff">
+              <div class="diff-viewer-shell">
+                <div class="diff-toolbar">
+                  <div class="diff-file-title">
+                    <span style="color:var(--color-ember);">M</span>
+                    <span>electron/git/executor.ts</span>
+                    <span style="font-size:11px; color:var(--color-steel); font-weight:400;">(+7 -1 lines)</span>
+                  </div>
+                  <div class="diff-toggle-group">
+                    <button class="diff-toggle-btn active" id="diffUnifiedBtn">Unified</button>
+                    <button class="diff-toggle-btn" id="diffSplitBtn">Side-by-Side</button>
+                  </div>
+                </div>
+                <div class="diff-content-body" id="diffLinesContainer"></div>
+              </div>
+            </div>
+
+            <!-- TAB 4: BRANCH MATRIX -->
+            <div class="view-panel" id="panel-branches">
+              <div class="branches-matrix-shell">
+                <!-- Local Branches -->
+                <div class="branch-group-box">
+                  <div class="branch-group-title">
+                    <span>LOCAL BRANCHES</span>
+                    <span style="color:var(--color-steel); font-size:11px;">(3 active)</span>
+                  </div>
+
+                  <div class="branch-item current">
+                    <div class="branch-name">
+                      <span style="color:var(--color-ember);">*</span>
+                      <span>main</span>
+                      <span style="font-size:10px; padding:2px 6px; background:#202020; border-radius:2px; color:var(--color-fog);">HEAD</span>
+                    </div>
+                    <div class="branch-stats">
+                      <span class="sync-badge">↑1 ahead</span>
+                      <span style="color:var(--color-steel);">• a94f1c0</span>
+                    </div>
+                  </div>
+
+                  <div class="branch-item">
+                    <div class="branch-name">
+                      <span style="color:var(--color-steel);">o</span>
+                      <span>feature/blueprint-minimap</span>
+                    </div>
+                    <div class="branch-stats">
+                      <span class="sync-badge">↑3 ahead</span>
+                      <span style="color:var(--color-steel);">• f419c82</span>
+                    </div>
+                  </div>
+
+                  <div class="branch-item">
+                    <div class="branch-name">
+                      <span style="color:var(--color-steel);">o</span>
+                      <span>hotfix/sqlite-wal</span>
+                    </div>
+                    <div class="branch-stats">
+                      <span style="color:var(--color-fog);">synced</span>
+                      <span style="color:var(--color-steel);">• 7b3e9a1</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Stash & Remotes -->
+                <div class="branch-group-box">
+                  <div class="branch-group-title">
+                    <span>STASH LIST &amp; REMOTES</span>
+                    <span style="color:var(--color-steel); font-size:11px;">(1 stash • 1 remote)</span>
+                  </div>
+
+                  <div class="branch-item" style="border-left: 2px solid var(--color-slate);">
+                    <div>
+                      <div style="font-weight:700; color:var(--color-paper);">stash@{0}</div>
+                      <div style="font-size:11px; color:var(--color-fog); margin-top:2px;">WIP on main: a94f1c0 feat: minimap radar</div>
+                    </div>
+                    <div style="display:flex; gap:6px;">
+                      <button class="staging-action-btn">Pop</button>
+                      <button class="staging-action-btn">Drop</button>
+                    </div>
+                  </div>
+
+                  <div style="margin-top:16px; padding-top:12px; border-top:1px solid var(--color-iron);">
+                    <div style="font-size:11px; color:var(--color-steel); margin-bottom:8px;">UPSTREAM REMOTES</div>
+                    <div style="font-size:12px; color:var(--color-fog); background:#111; padding:8px 10px; border-radius:2px; border:1px solid #202020;">
+                      <div style="font-weight:700; color:var(--color-paper);">origin (fetch &amp; push)</div>
+                      <div style="color:var(--color-steel); font-size:11px; margin-top:2px;">https://github.com/flowgit/flowgit.git</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Features Deep Dive (6 Axiom Cards) ── -->
+    <section class="section-wrapper" id="features">
+      <div class="container">
+        <div class="section-header">
+          <span class="tag-label">TECHNICAL SPECIFICATIONS</span>
+          <h2 class="heading-lg">ENGINEERED FOR WORKFLOW VELOCITY</h2>
+          <p class="body-text" style="max-width: 600px; margin-top: 8px;">
+            Every component in FlowGit is designed around deterministic Git execution, strict context isolation,
+            and terminal-grade monospaced ergonomics.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <!-- Card 1: Editorial Signature Card (with 2px Ember left border) -->
+          <div class="axiom-card editorial">
+            <div class="card-num">// 01 &mdash; VISUAL ARCHITECTURE</div>
+            <h3 class="card-title">Signature Blueprint Git Graph</h3>
+            <p class="card-body">
+              Infinite canvas pan-and-zoom DAG renderer. Computes real topological ancestry, non-overlapping lane columns,
+              and parent-child cubic Bezier splines. Never get lost in sprawling branch merges again.
+            </p>
+            <ul class="card-list">
+              <li>Infinite dot-grid canvas (0.25x to 3.0x zoom)</li>
+              <li>Live minimap radar with viewport box tracking</li>
+              <li>Instant jump-to-HEAD and filter search</li>
+            </ul>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="axiom-card">
+            <div class="card-num">// 02 &mdash; PROCESS SECURITY</div>
+            <h3 class="card-title">Zero Shell Concatenation</h3>
+            <p class="card-body">
+              Direct binary invocation via safe argv arrays (<code style="color:var(--color-ember);">spawn('git', [args])</code>).
+              Eliminates shell escape vulnerabilities, handles spaces and unicode filenames securely, and scrubs credentials before logging.
+            </p>
+            <ul class="card-list">
+              <li>Context isolation with strict IPC channel guards</li>
+              <li>Automatic token &amp; HTTP basic auth redaction</li>
+              <li>Multi-stage Windows Git binary detector</li>
+            </ul>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="axiom-card">
+            <div class="card-num">// 03 &mdash; HIGH PERFORMANCE CACHING</div>
+            <h3 class="card-title">SQLite WAL Persistence</h3>
+            <p class="card-body">
+              Instantaneous startup and sub-second repo switching. FlowGit persists repository records, pinned workspaces,
+              and graph coordinates in an embedded SQLite engine with Write-Ahead Logging (WAL).
+            </p>
+            <ul class="card-list">
+              <li>Zero cold-start lag on 100k+ commit repositories</li>
+              <li>Atomic disk commits with zero file corruption</li>
+              <li>Zero cloud dependency &mdash; 100% local data</li>
+            </ul>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="axiom-card">
+            <div class="card-num">// 04 &mdash; STAGING &amp; COMMITS</div>
+            <h3 class="card-title">Porcelain-v1 Index Staging</h3>
+            <p class="card-body">
+              Deterministic file staging based directly on Git's porcelain status format.
+              Atomic file actions with confirmation safeguards for destructive operations.
+            </p>
+            <ul class="card-list">
+              <li>Clear Staged, Unstaged, Untracked &amp; Conflicted separation</li>
+              <li>Amend commit flag &amp; live 72-character counter</li>
+              <li>Selective hunk staging and safe worktree discard</li>
+            </ul>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="axiom-card">
+            <div class="card-num">// 05 &mdash; COMPARISON ENGINE</div>
+            <h3 class="card-title">Unified &amp; Split Diff Viewer</h3>
+            <p class="card-body">
+              Terminal-grade diff parsing engine with additions/deletions highlighting, line numbering for both revisions,
+              and intelligent context folding for unchanged code.
+            </p>
+            <ul class="card-list">
+              <li>Side-by-side split &amp; unified inline comparison modes</li>
+              <li>Protective threshold for binary and large files</li>
+              <li>Design-system safe muted color accents</li>
+            </ul>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="axiom-card">
+            <div class="card-num">// 06 &mdash; BRANCHES &amp; SYNC</div>
+            <h3 class="card-title">Branch Matrix &amp; Stash Sync</h3>
+            <p class="card-body">
+              Complete local and remote-tracking branch management with upstream sync indicators (<code style="color:var(--color-ember);">↑ ahead / ↓ behind</code>),
+              annotated tags, and untracked-file stash operations.
+            </p>
+            <ul class="card-list">
+              <li>Safe push with force-with-lease protection</li>
+              <li>Network error classification with actionable recovery</li>
+              <li>Instant stash preview, pop, apply, and drop</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Architecture & Command Guide ── -->
+    <section class="section-wrapper" id="architecture">
+      <div class="container">
+        <div class="section-header">
+          <span class="tag-label">SYSTEM ARCHITECTURE &amp; EXECUTION</span>
+          <h2 class="heading-lg">HOW FLOWGIT OPERATES</h2>
+          <p class="body-text" style="max-width: 600px; margin-top: 8px;">
+            Inspect the underlying technology choices and execute build commands directly.
+          </p>
+        </div>
+
+        <div class="arch-grid">
+          <!-- Terminal Box -->
+          <div class="terminal-box" id="terminal">
+            <div class="terminal-tab-header">
+              <button class="terminal-tab-btn active" data-cmd="portable">PORTABLE (.EXE)</button>
+              <button class="terminal-tab-btn" data-cmd="binaries">COMPILED BINARIES (.ZIP)</button>
+              <button class="terminal-tab-btn" data-cmd="source">BUILD FROM SOURCE</button>
+            </div>
+            <div class="terminal-code-body">
+              <button class="copy-floating-btn" id="copyTerminalFloatingBtn">COPY</button>
+              <pre><code id="terminalCodeDisplay"># Standalone Single-File Executable
+# Download FlowGit-Portable.exe from GitHub Releases and launch directly:
+.\FlowGit-Portable.exe
+
+# Zero installation, zero registry writes</code></pre>
+            </div>
+          </div>
+
+          <!-- Architecture Comparison Table -->
+          <div class="data-table-container">
+            <table class="axiom-table">
+              <thead>
+                <tr>
+                  <th>COMPONENT</th>
+                  <th>FLOWGIT ENGINE</th>
+                  <th>STANDARD GUI CLIENTS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="color:var(--color-paper); font-weight:700;">Git Process</td>
+                  <td style="color:var(--color-ember);">argv spawn() arrays (zero shell)</td>
+                  <td>exec() shell string interpolation</td>
+                </tr>
+                <tr>
+                  <td style="color:var(--color-paper); font-weight:700;">Visual Model</td>
+                  <td>Blueprint Topological DAG (Node-based)</td>
+                  <td>Linear vertical ladder list</td>
+                </tr>
+                <tr>
+                  <td style="color:var(--color-paper); font-weight:700;">Metadata Store</td>
+                  <td>SQLite WAL database (0ms cold cache)</td>
+                  <td>Volatile in-memory parse on each open</td>
+                </tr>
+                <tr>
+                  <td style="color:var(--color-paper); font-weight:700;">Security Model</td>
+                  <td>Context Isolation + Credential Redaction</td>
+                  <td>Plaintext logging of auth URLs</td>
+                </tr>
+                <tr>
+                  <td style="color:var(--color-paper); font-weight:700;">Design System</td>
+                  <td>Axiom Dark System (Strict Monospace)</td>
+                  <td>Generic OS native / colorful tabs</td>
+                </tr>
+                <tr>
+                  <td style="color:var(--color-paper); font-weight:700;">Runtime</td>
+                  <td>Electron 33 + Vite 6 + React 18</td>
+                  <td>Legacy framework runtimes</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Download Matrix ── -->
+    <section class="section-wrapper" id="downloads" style="border-bottom: none;">
+      <div class="container">
+        <div class="section-header">
+          <span class="tag-label">DEPLOYMENT ARTIFACTS</span>
+          <h2 class="heading-lg">DOWNLOAD FLOWGIT FOR WINDOWS</h2>
+          <p class="body-text" style="max-width: 650px; margin-top: 8px;">
+            Targeted for Windows 11 and Windows 10 (64-bit). No installer required &mdash; run instantly with the single-file Portable executable, unpack the full Compiled Binaries archive, or build from source.
+          </p>
+        </div>
+
+        <div class="download-grid">
+          <!-- Option 1: Portable Single-File -->
+          <div class="download-card highlight">
+            <span class="download-badge-recom">RECOMMENDED</span>
+            <div>
+              <h3 class="download-card-title">Standalone Portable</h3>
+              <div class="download-card-meta">FlowGit-Portable.exe &bull; ~82 MB</div>
+              <ul class="download-card-details">
+                <li><span>Target OS</span> <span>Windows 11 / 10 (x64)</span></li>
+                <li><span>Form Factor</span> <span>Single standalone .exe</span></li>
+                <li><span>Installation</span> <span>Zero registry writes</span></li>
+                <li><span>Persistence</span> <span>%APPDATA%\FlowGit\</span></li>
+              </ul>
+            </div>
+            <!-- GITHUB LINK PLACEHOLDER: Update href with your repository release URL -->
+            <a href="#downloads" class="btn btn-primary github-repo-link" style="width: 100%;">
+              <span>Get on GitHub Releases</span>
+              <span>→</span>
+            </a>
+          </div>
+
+          <!-- Option 2: Compiled Binaries Archive -->
+          <div class="download-card">
+            <span class="download-badge-recom" style="background-color: var(--color-slate);">ARCHIVE</span>
+            <div>
+              <h3 class="download-card-title">Compiled Binaries</h3>
+              <div class="download-card-meta">FlowGit-win-x64-binaries.zip &bull; ~95 MB</div>
+              <ul class="download-card-details">
+                <li><span>Target OS</span> <span>Windows 11 / 10 (x64)</span></li>
+                <li><span>Contents</span> <span>FlowGit.exe + runtime bundle</span></li>
+                <li><span>Execution</span> <span>Extract &amp; run FlowGit.exe</span></li>
+                <li><span>Portability</span> <span>Run from any folder or USB</span></li>
+              </ul>
+            </div>
+            <!-- GITHUB LINK PLACEHOLDER: Update href with your repository release URL -->
+            <a href="#downloads" class="btn btn-secondary github-repo-link" style="width: 100%;">
+              <span>Get on GitHub Releases</span>
+              <span>→</span>
+            </a>
+          </div>
+
+          <!-- Option 3: Source -->
+          <div class="download-card">
+            <div>
+              <h3 class="download-card-title">Source Repository</h3>
+              <div class="download-card-meta">TypeScript / React 18 / Electron 33</div>
+              <ul class="download-card-details">
+                <li><span>Node.js</span> <span>v20.x or v24.x LTS</span></li>
+                <li><span>Tooling</span> <span>electron-vite + Vitest</span></li>
+                <li><span>License</span> <span>MIT Open Source</span></li>
+                <li><span>Verification</span> <span>100% Tests Passing</span></li>
+              </ul>
+            </div>
+            <a href="#terminal" class="btn btn-ghost" style="width: 100%;">
+              <span>View Build Pipeline</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- System Requirements Strip -->
+        <div class="sys-reqs-strip">
+          <div><strong style="color:var(--color-paper);">MINIMUM PREREQUISITES:</strong> Windows 10/11 (64-bit) &bull; 4 GB RAM &bull; Git for Windows 2.30+ installed in PATH</div>
+          <div style="color:var(--color-steel);">HOSTING: <code style="color:var(--color-fog);">GitHub Releases (Direct Binary Distribution)</code></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ── Global Keyboard Shortcuts Bar ── -->
+  <div class="kbd-bar">
+    <div class="container">
+      <div class="kbd-items-wrapper">
+        <span style="color:var(--color-paper); font-weight:700;">KEYBOARD SHORTCUTS:</span>
+        <div class="kbd-item"><kbd>1</kbd> <span>Graph</span></div>
+        <div class="kbd-item"><kbd>2</kbd> <span>Staging</span></div>
+        <div class="kbd-item"><kbd>3</kbd> <span>Diffs</span></div>
+        <div class="kbd-item"><kbd>4</kbd> <span>Branches</span></div>
+        <div class="kbd-item"><kbd>H</kbd> <span>Jump HEAD</span></div>
+        <div class="kbd-item"><kbd>F</kbd> <span>Fit Canvas</span></div>
+        <div class="kbd-item"><kbd>ESC</kbd> <span>Close Inspector</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="brand-logo" style="margin-bottom: 12px;">
+            <span class="brand-mark">▲</span>
+            <span>FlowGit</span>
+          </div>
+          <p style="font-size: 13px; color: var(--color-fog); max-width: 320px; line-height: 1.6;">
+            A terminal-grade Git client for Windows engineered with Blueprint visual DAG topology,
+            porcelain-v1 staging, and hardened argument-array binary execution.
+          </p>
+          <div style="font-size: 11px; color: var(--color-steel); margin-top: 14px;">
+            DESIGN SYSTEM: AXIOM SPECIFICATION v1.0
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">PRODUCT</h4>
+          <ul class="footer-link-list">
+            <li><a href="#graph" class="footer-link">Blueprint Graph</a></li>
+            <li><a href="#staging" class="footer-link">Porcelain Staging</a></li>
+            <li><a href="#diffs" class="footer-link">Diff Viewer</a></li>
+            <li><a href="#architecture" class="footer-link">Architecture</a></li>
+            <li><a href="#downloads" class="footer-link">Releases</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">DOCUMENTATION</h4>
+          <ul class="footer-link-list">
+            <li><a href="#terminal" class="footer-link">Quick Start</a></li>
+            <li><a href="#terminal" class="footer-link">Build Commands</a></li>
+            <li><a href="#architecture" class="footer-link">Security Model</a></li>
+            <li><a href="../DESIGN.md" class="footer-link">DESIGN.md</a></li>
+            <li><a href="../README.md" class="footer-link">README.md</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">ENGINEERING</h4>
+          <ul class="footer-link-list">
+            <li><a href="#" class="footer-link">Electron 33</a></li>
+            <li><a href="#" class="footer-link">React 18 + TypeScript</a></li>
+            <li><a href="#" class="footer-link">SQLite WAL Persistence</a></li>
+            <li><a href="#" class="footer-link">Vitest Integration</a></li>
+            <li><a href="#" class="footer-link">MIT License</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 FlowGit Project. All rights reserved. Licensed under the MIT License.</div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <span style="display:inline-flex; align-items:center; gap:6px;">
+            <span style="width:6px; height:6px; background:#22c55e; border-radius:9999px;"></span>
+            <span>SYSTEM STATUS: ALL ENGINES OPERATIONAL</span>
+          </span>
+          <span>TERMINAL: ~/FLOWGIT_</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Global Toast Notice ── -->
+  <div class="toast-notice" id="globalToast">
+    <span style="color:var(--color-ember);">[OK]</span>
+    <span id="toastMsg">Action completed successfully</span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
