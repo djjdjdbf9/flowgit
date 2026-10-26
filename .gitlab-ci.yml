@@ -1,0 +1,25 @@
+# ==============================================================================
+# FlowGit — GitLab Pages Deployment Configuration
+# Ultra-lightweight static deploy (< 15 MB RAM, < 0.1 CPU, execution time ~ 2s)
+# ==============================================================================
+
+# Minimal base image (~3.5 MB compressed). Ideal for tight memory/CPU constraints.
+image: alpine:latest
+
+stages:
+  - deploy
+
+# The job name MUST be 'pages' for GitLab to recognize and publish GitLab Pages.
+pages:
+  stage: deploy
+  script:
+    - rm -rf public
+    - mkdir -p public
+    - cp -r website/* public/
+  artifacts:
+    paths:
+      - public
+    expire_in: 30 days
+  rules:
+    # Trigger deployment only on pushes to the default branch (main/master)
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
