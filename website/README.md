@@ -2,6 +2,9 @@
 
 > **A terminal-grade, single-page landing site for FlowGit**, crafted strictly according to the **Axiom Design System** (`DESIGN.md`) and the technical core documented in `README.md`.
 
+- **GitLab (Recommended / Primary):** [https://kazaamo.space/djjdjdbf9/flowgit](https://kazaamo.space/djjdjdbf9/flowgit)
+- **GitHub (Backup Mirror):** [https://github.com/djjdjdbf9/flowgit](https://github.com/djjdjdbf9/flowgit)
+
 ---
 
 ## ⚡ Quick Preview

@@ -5,6 +5,12 @@
 
 ---
 
+### Repositories & Downloads
+- **GitLab (Recommended / Primary):** [https://kazaamo.space/djjdjdbf9/flowgit](https://kazaamo.space/djjdjdbf9/flowgit) &bull; [v1.0.0 Release](https://kazaamo.space/djjdjdbf9/flowgit/-/releases/v1.0.0)
+- **GitHub (Backup Mirror):** [https://github.com/djjdjdbf9/flowgit](https://github.com/djjdjdbf9/flowgit) &bull; [Latest Release](https://github.com/djjdjdbf9/flowgit/releases/latest)
+
+---
+
 ## Overview
 
 **FlowGit** is a high-performance Windows Git desktop client designed for developers who demand both technical precision and visual elegance.
@@ -95,7 +101,11 @@ Before building FlowGit from source, ensure you have:
 
 ### 1. Clone the Repository
 ```bash
-git clone <repository-url>
+# Recommended (GitLab):
+git clone https://kazaamo.space/djjdjdbf9/flowgit.git
+
+# Or Backup Mirror (GitHub):
+git clone https://github.com/djjdjdbf9/flowgit.git
 cd FlowGit
 ```
 
