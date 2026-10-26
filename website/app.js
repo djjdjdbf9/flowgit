@@ -758,19 +758,19 @@
 
     const commands = {
       portable: `# Standalone Single-File Executable
-# Download FlowGit-Portable.exe from GitHub Releases and launch directly:
+# Download FlowGit-Portable.exe from GitLab (Recommended) or GitHub Mirror:
 .\\FlowGit-Portable.exe
 
 # Zero installation, zero registry writes`,
       binaries: `# Compiled Binaries (Pre-compiled Unpacked Archive)
-# 1. Download and extract FlowGit-win-x64-binaries.zip
+# 1. Download and extract FlowGit-win-x64-binaries.zip from GitLab / GitHub:
 Expand-Archive -Path .\\FlowGit-win-x64-binaries.zip -DestinationPath .\\FlowGit
 
 # 2. Run the executable directly (no installer required):
 .\\FlowGit\\FlowGit.exe`,
-      source: `# 1. Clone repository
-git clone <repository-url>
-cd FlowGit
+      source: `# 1. Clone repository from GitLab (or GitHub Mirror)
+git clone https://kazaamo.space/djjdjdbf9/flowgit.git
+cd flowgit
 
 # 2. Install dependencies & run dev server
 npm install

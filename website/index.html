@@ -19,7 +19,7 @@
       </div>
       <div class="announcement-text">
         <span>Topological DAG Engine, Electron 33 &amp; SQLite WAL persistence are now live.</span>
-        <a href="#downloads" class="announcement-link">Get Portable &amp; Compiled Binaries on GitHub →</a>
+        <a href="https://kazaamo.space/djjdjdbf9/flowgit/-/releases/v1.0.0" target="_blank" rel="noopener noreferrer" class="announcement-link">Get v1.0.0 on GitLab (Recommended) →</a>
       </div>
       <button class="announcement-close" id="closeAnnouncement" title="Dismiss announcement">×</button>
     </div>
@@ -85,18 +85,18 @@
 
           <!-- Action buttons -->
           <div class="hero-cta-group">
-            <a href="#downloads" class="btn btn-primary btn-lg">
-              <span>View Releases on GitHub</span>
+            <a href="https://kazaamo.space/djjdjdbf9/flowgit/-/releases/v1.0.0" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">
+              <span>Download on GitLab (Recommended)</span>
               <span>→</span>
             </a>
-            <a href="#terminal" class="btn btn-ghost btn-lg">
-              <span>Execution Guide</span>
-              <span>→</span>
+            <a href="https://github.com/djjdjdbf9/flowgit/releases/latest" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-lg">
+              <span>GitHub Mirror</span>
+              <span>↗</span>
             </a>
-            <div class="hero-install-pill">
+            <a href="#downloads" class="hero-install-pill" style="cursor: pointer; text-decoration: none;">
               <span style="color:var(--color-ember); font-weight:700;">ARTIFACTS:</span>
-              <code style="color:var(--color-paper);">Portable .exe &bull; Compiled Binaries .zip</code>
-            </div>
+              <code style="color:var(--color-paper);">Portable .exe &bull; Compiled Binaries .zip ↓</code>
+            </a>
           </div>
 
           <!-- Telemetry Stats -->
@@ -525,7 +525,7 @@
             <div class="terminal-code-body">
               <button class="copy-floating-btn" id="copyTerminalFloatingBtn">COPY</button>
               <pre><code id="terminalCodeDisplay"># Standalone Single-File Executable
-# Download FlowGit-Portable.exe from GitHub Releases and launch directly:
+# Download FlowGit-Portable.exe from GitLab (Recommended) or GitHub mirror:
 .\FlowGit-Portable.exe
 
 # Zero installation, zero registry writes</code></pre>
@@ -586,8 +586,8 @@
         <div class="section-header">
           <span class="tag-label">DEPLOYMENT ARTIFACTS</span>
           <h2 class="heading-lg">DOWNLOAD FLOWGIT FOR WINDOWS</h2>
-          <p class="body-text" style="max-width: 650px; margin-top: 8px;">
-            Targeted for Windows 11 and Windows 10 (64-bit). No installer required &mdash; run instantly with the single-file Portable executable, unpack the full Compiled Binaries archive, or build from source.
+          <p class="body-text" style="max-width: 680px; margin-top: 8px;">
+            Targeted for Windows 11 and Windows 10 (64-bit). Primary distribution is hosted on GitLab (<code style="color:var(--color-ember);">Recommended</code>), with an official mirror on GitHub Releases as a backup source.
           </p>
         </div>
 
@@ -605,11 +605,16 @@
                 <li><span>Persistence</span> <span>%APPDATA%\FlowGit\</span></li>
               </ul>
             </div>
-            <!-- GITHUB LINK PLACEHOLDER: Update href with your repository release URL -->
-            <a href="#downloads" class="btn btn-primary github-repo-link" style="width: 100%;">
-              <span>Get on GitHub Releases</span>
-              <span>→</span>
-            </a>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto;">
+              <a href="https://kazaamo.space/djjdjdbf9/flowgit/-/releases/v1.0.0" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">
+                <span>Download (GitLab &bull; Recommended)</span>
+                <span>→</span>
+              </a>
+              <a href="https://github.com/djjdjdbf9/flowgit/releases/latest" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="width: 100%;">
+                <span>Backup Mirror (GitHub Releases)</span>
+                <span>↗</span>
+              </a>
+            </div>
           </div>
 
           <!-- Option 2: Compiled Binaries Archive -->
@@ -625,11 +630,16 @@
                 <li><span>Portability</span> <span>Run from any folder or USB</span></li>
               </ul>
             </div>
-            <!-- GITHUB LINK PLACEHOLDER: Update href with your repository release URL -->
-            <a href="#downloads" class="btn btn-secondary github-repo-link" style="width: 100%;">
-              <span>Get on GitHub Releases</span>
-              <span>→</span>
-            </a>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto;">
+              <a href="https://kazaamo.space/djjdjdbf9/flowgit/-/releases/v1.0.0" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">
+                <span>Download (GitLab &bull; Recommended)</span>
+                <span>→</span>
+              </a>
+              <a href="https://github.com/djjdjdbf9/flowgit/releases/latest" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="width: 100%;">
+                <span>Backup Mirror (GitHub Releases)</span>
+                <span>↗</span>
+              </a>
+            </div>
           </div>
 
           <!-- Option 3: Source -->
@@ -644,17 +654,23 @@
                 <li><span>Verification</span> <span>100% Tests Passing</span></li>
               </ul>
             </div>
-            <a href="#terminal" class="btn btn-ghost" style="width: 100%;">
-              <span>View Build Pipeline</span>
-              <span>→</span>
-            </a>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto;">
+              <a href="https://kazaamo.space/djjdjdbf9/flowgit" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="width: 100%;">
+                <span>GitLab Repository</span>
+                <span>→</span>
+              </a>
+              <a href="https://github.com/djjdjdbf9/flowgit" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="width: 100%;">
+                <span>GitHub Mirror</span>
+                <span>↗</span>
+              </a>
+            </div>
           </div>
         </div>
 
         <!-- System Requirements Strip -->
         <div class="sys-reqs-strip">
           <div><strong style="color:var(--color-paper);">MINIMUM PREREQUISITES:</strong> Windows 10/11 (64-bit) &bull; 4 GB RAM &bull; Git for Windows 2.30+ installed in PATH</div>
-          <div style="color:var(--color-steel);">HOSTING: <code style="color:var(--color-fog);">GitHub Releases (Direct Binary Distribution)</code></div>
+          <div style="color:var(--color-steel);">HOSTING: <a href="https://kazaamo.space/djjdjdbf9/flowgit/-/releases/v1.0.0" target="_blank" rel="noopener noreferrer" style="color:var(--color-ember); text-decoration:underline; font-weight:700;">GitLab Releases (Recommended)</a> &bull; <a href="https://github.com/djjdjdbf9/flowgit/releases/latest" target="_blank" rel="noopener noreferrer" style="color:var(--color-fog); text-decoration:underline;">GitHub (Backup Mirror)</a></div>
         </div>
       </div>
     </section>
@@ -695,13 +711,13 @@
         </div>
 
         <div>
-          <h4 class="footer-col-title">PRODUCT</h4>
+          <h4 class="footer-col-title">RELEASES &amp; MIRRORS</h4>
           <ul class="footer-link-list">
-            <li><a href="#graph" class="footer-link">Blueprint Graph</a></li>
-            <li><a href="#staging" class="footer-link">Porcelain Staging</a></li>
-            <li><a href="#diffs" class="footer-link">Diff Viewer</a></li>
-            <li><a href="#architecture" class="footer-link">Architecture</a></li>
-            <li><a href="#downloads" class="footer-link">Releases</a></li>
+            <li><a href="https://kazaamo.space/djjdjdbf9/flowgit/-/releases/v1.0.0" target="_blank" rel="noopener noreferrer" class="footer-link" style="color:var(--color-ember);">GitLab Release v1.0.0 →</a></li>
+            <li><a href="https://github.com/djjdjdbf9/flowgit/releases/latest" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub Latest (Mirror) ↗</a></li>
+            <li><a href="#downloads" class="footer-link">Standalone Portable .exe</a></li>
+            <li><a href="#downloads" class="footer-link">Compiled Binaries .zip</a></li>
+            <li><a href="#architecture" class="footer-link">System Architecture</a></li>
           </ul>
         </div>
 
